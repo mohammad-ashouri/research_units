@@ -23,7 +23,8 @@
                 <div class="sign-in-htm">
                     <div class="group">
                         <label for="username" class="label mb-1">نام کاربری</label>
-                        <input name="username" autocomplete="off" id="username" type="text" placeholder="نام کاربری را وارد کنید" class="input">
+                        <input name="username" autocomplete="off" id="username" type="text"
+                               placeholder="نام کاربری را وارد کنید" class="input">
                     </div>
                     <div class="group">
                         <label for="password" class="label mb-1">رمز عبور</label>
@@ -49,6 +50,11 @@
                     </div>
                 </div>
             </form>
+        </div>
+        <div class="group">
+            <a href="{{ route('signup') }}">
+                <button class="button" type="button">ایحاد حساب کاربری</button>
+            </a>
         </div>
     </div>
 </div>

@@ -6,6 +6,7 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\Reports\DatabaseBackupController;
 use App\Http\Controllers\SearchController;
+use App\Http\Controllers\SignupController;
 use App\Http\Controllers\UserManager;
 use App\Http\Middleware\MenuMiddleware;
 use App\Http\Middleware\NTCPMiddleware;
@@ -37,6 +38,8 @@ Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login');
 Route::middleware(ThrottleRequests::class)->post('/login', [LoginController::class, 'login']);
 Route::get('/captcha', [LoginController::class, 'getCaptcha'])->name('captcha');
 
+Route::get('/signup',[SignupController::class, 'showSignupForm'])->name('signup');
+Route::post('/signup',[SignupController::class, 'register'])->name('signup.register');
 
 //Panel Routes
 Route::middleware(['auth', MenuMiddleware::class])->middleware(MenuMiddleware::class)->group(function () {
