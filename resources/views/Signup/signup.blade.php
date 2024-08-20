@@ -6,6 +6,10 @@
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>{{ env('APP_PERSIAN_NAME') }}</title>
+    <link rel="stylesheet" href="/build/plugins/persian-datepicker/dist/css/persian-datepicker.css"/>
+    <script src="/build/plugins/jquery/dist/jquery.js"></script>
+    <script src="/build/plugins/persian-date/dist/persian-date.js"></script>
+    <script src="/build/plugins/persian-datepicker/dist/js/persian-datepicker.js"></script>
     @vite(['resources/css/login.css','resources/css/app.css','resources/js/login.js'])
 </head>
 @component('components.loader-spinner') @endcomponent
@@ -90,10 +94,10 @@
                             </select>
                         </div>
                         <div>
-                            <label for="previous_name" class="label mb-1">تاریخ صدور/اخذ مجوز</label>
-                            <input name="previous_name" id="previous_name" type="text"
-                                   placeholder="نام سابق را وارد کنید"
-                                   class="input">
+                            <label for="license_issuance_date" class="label mb-1">تاریخ صدور/اخذ مجوز</label>
+                            <input name="license_issuance_date" id="license_issuance_date" type="text"
+                                   placeholder="برای انتخاب تاریخ کلیک کنید"
+                                   class="input license_issuance_date">
                         </div>
                         </div>
                     <div class="group flex justify-center space-x-5">
