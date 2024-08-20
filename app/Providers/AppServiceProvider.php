@@ -25,9 +25,5 @@ class AppServiceProvider extends ServiceProvider
     {
         Schema::defaultStringLength(191);
         Paginator::useTailwind();
-        // Share $postTypes with all views
-        View::composer('*', function ($view) {
-            $view->with('postTypes', PostType::where('status', 1)->get());
-        });
     }
 }
