@@ -49,9 +49,9 @@ $('#signupForm').submit(function (e) {
                     field.style.backgroundColor = 'gray';
                 });
             } else if (xhr.responseJSON.errors) {
-                    swalFire('خطای نام کاربری', xhr.responseJSON.message, 'error', 'تلاش مجدد');
-                    reloadCaptcha();
-                    captcha.value = '';
+                swalFire('خطا', xhr.responseJSON.errors[Object.keys(xhr.responseJSON.errors)[0]][0], 'error', 'تلاش مجدد');
+                reloadCaptcha();
+                captcha.value = '';
             } else {
                 swalFire('خطای ناشناخته', 'ارتباط با سرور برقرار نشد.', 'error', 'تلاش مجدد');
                 // console.clear();

@@ -30,7 +30,7 @@
             <form id="signupForm" class="w-full" method="post" action="{{ route('signup.register') }}">
                 @csrf
                 <div class="sign-in-htm">
-                    <div class="group justify-center  grid lg:grid-cols-2 space-x-2">
+                    <div class="group justify-center grid lg:grid-cols-2 gap-4">
                         <div>
                             <label for="first_name" class="label mb-1">نام</label>
                             <input name="first_name" id="first_name" type="text" required placeholder="نام را وارد کنید"
