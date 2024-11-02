@@ -16,11 +16,12 @@ class SignupController extends Controller
         $this->validate($request,[
             'first_name' => 'required|string|max:255',
             'last_name' => 'required|string|max:255',
-            'national_code' => 'required|integer|max:10',
-            'mobile' => 'required|integer|max:11',
-            'unit_name' => 'required|string|max:255',
-            'email' => 'required|email|max:255',
+            'national_code' => 'required|digits:10|unique:users,national_code',
+            'mobile' => 'required|digits:11|unique:users,mobile',
+            'unit_name' => 'required|string|max:255|unique:units,unit_name',
+            'email' => 'required|email|max:255|unique:users,email',
             'captcha' => 'required|captcha',
         ]);
+        dd($request->all());
     }
 }
