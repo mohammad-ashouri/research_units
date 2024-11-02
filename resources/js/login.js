@@ -1,5 +1,6 @@
 import './bootstrap';
 import '@fortawesome/fontawesome-free/css/all.css';
+import $ from 'jquery';
 import Swal from 'sweetalert2';
 
 window.Swal = Swal;
@@ -10,95 +11,17 @@ function swalFire(title = null, text, icon, confirmButtonText) {
     });
 }
 
+function reloadCaptcha() {
+    var captchaImg = document.getElementById('captchaImg');
+    var captchaUrl = "/captcha";
+    captchaImg.src = captchaUrl + '?' + Date.now();
+}
+
 function loaderSpinner() {
     $('#loader').toggleClass('hidden');
 }
 
-if (typeof $ !== 'undefined') {
-$('.license_issuance_date').persianDatepicker({
-    "format": "LLLL",
-    initialValue:false,
-    "inputDelay": 800,
-    "observer": false,
-    "calendar": {
-        "persian": {
-            "locale": "fa",
-            "showHint": false,
-            "leapYearMode": "algorithmic"
-        },
-        "gregorian": {
-            "locale": "en",
-            "showHint": false
-        }
-    },
-    "navigator": {
-        "enabled": true,
-        "scroll": {
-            "enabled": true
-        },
-        "text": {
-            "btnNextText": "<",
-            "btnPrevText": ">"
-        }
-    },
-    "toolbox": {
-        "enabled": true,
-        "calendarSwitch": {
-            "enabled": false,
-            "format": "MMMM"
-        },
-        "todayButton": {
-            "enabled": true,
-            "text": {
-                "fa": "امروز",
-                "en": "Today"
-            }
-        },
-        "submitButton": {
-            "enabled": false,
-            "text": {
-                "fa": "تایید",
-                "en": "Submit"
-            }
-        },
-        "text": {
-            "btnToday": "امروز"
-        }
-    },
-    "timePicker": {
-        "enabled": false,
-        "step": 1,
-        "hour": {
-            "enabled": false,
-            "step": null
-        },
-        "minute": {
-            "enabled": false,
-            "step": null
-        },
-        "second": {
-            "enabled": false,
-            "step": null
-        },
-        "meridian": {
-            "enabled": false
-        }
-    },
-    "dayPicker": {
-        "enabled": true,
-        "titleFormat": "YYYY MMMM"
-    },
-    "monthPicker": {
-        "enabled": true,
-        "titleFormat": "YYYY"
-    },
-    "yearPicker": {
-        "enabled": true,
-        "titleFormat": "YYYY"
-    }
-});
-
-}
+reloadCaptcha();
 
 //Check Login Form
 $('#loginForm').submit(function (e) {
@@ -151,7 +74,7 @@ $('#loginForm').submit(function (e) {
                 });
             } else {
                 swalFire('خطای ناشناخته', 'ارتباط با سرور برقرار نشد.', 'error', 'تلاش مجدد');
-                console.clear();
+                // console.clear();
             }
             loaderSpinner();
 
