@@ -17,6 +17,10 @@ function reloadCaptcha() {
     captchaImg.src = captchaUrl + '?' + Date.now();
 }
 
+$('.reload-captcha').click(function (){
+    reloadCaptcha();
+});
+
 function loaderSpinner() {
     $('#loader').toggleClass('hidden');
 }
@@ -36,8 +40,22 @@ $('#signupForm').submit(function (e) {
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content'),
         }, success: function (response) {
             if (response.success) {
-                localStorage.setItem('selectedTab', 1);
-                window.location.href = response.redirect;
+                Swal.fire({
+                    title: "ثبت نام با موفقیت انجام شد",
+                    html: "نام کاربری شما، کدملی و رمز عبورتان شماره همراه خواهد بود",
+                    timer: 20000,
+                    icon: 'success',
+                    timerProgressBar: true,
+                    confirmButtonText: "انتقال به صفحه ورود",
+                    didOpen: () => {
+
+                    },
+                    willClose: () => {
+
+                    }
+                }).then((result) => {
+                    window.location.href = '/login';
+                });
             }
         }, error: function (xhr, textStatus, errorThrown) {
             if (xhr.responseJSON['YouAreLocked']) {

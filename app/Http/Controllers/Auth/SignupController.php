@@ -21,9 +21,9 @@ class SignupController extends Controller
         $this->validate($request, [
             'first_name' => 'required|string|max:255',
             'last_name' => 'required|string|max:255',
-            'national_code' => 'required|digits:10|unique:users,national_code',
+            'national_code' => 'required|digits:10|unique:users,username',
             'mobile' => 'required|digits:11|unique:users,mobile',
-            'unit_name' => 'required|string|max:255|unique:units,unit_name',
+            'unit_name' => 'required|string|max:255|unique:units,name',
             'email' => 'required|email|max:255|unique:units,email',
             'captcha' => 'required|captcha',
         ]);
@@ -42,7 +42,7 @@ class SignupController extends Controller
         $unit = new Unit();
         $unit->name = $request->unit_name;
         $unit->email = $request->email;
-        $unit->technical_liaision = $user->id;
+        $unit->technical_liaison = $user->id;
         $unit->save();
 
         dd($request->all());

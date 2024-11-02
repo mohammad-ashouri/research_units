@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('email');
-            $table->unsignedBigInteger('technical_liaison')->nullable();
+            $table->unsignedBigInteger('technical_liaison');
             $table->foreign('technical_liaison')->references('id')->on('users');
             $table->timestamps();
             $table->softDeletes();

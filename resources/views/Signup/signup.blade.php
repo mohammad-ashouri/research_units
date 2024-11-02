@@ -69,8 +69,8 @@
                     </div>
                     <div class="group flex justify-center">
                         <img id="captchaImg" src="/captcha" alt="Captcha" class="w-32 h-10 mt-2 rounded">
-                        <button type="button" onclick="reloadCaptcha()" title="تازه سازی کلمه امنیتی"
-                                class="h-10 p-1 bg-gray-300 hover:bg-gray-400 rounded mt-2">
+                        <button type="button" title="تازه سازی کلمه امنیتی"
+                                class="h-10 p-1 bg-gray-300 hover:bg-gray-400 rounded mt-2 reload-captcha">
                             <i class="fas fa-sync-alt"></i>
                         </button>
                         <input name="captcha" id="captcha" required placeholder="کد امنیتی را وارد کنید" type="text"
