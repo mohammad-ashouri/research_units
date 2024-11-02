@@ -23,6 +23,44 @@ function loaderSpinner() {
 
 reloadCaptcha();
 
+//Check Signup Form
+$('#signupForm').submit(function (e) {
+    e.preventDefault();
+    loaderSpinner();
+    let form = $(this);
+    let url = form.attr('action');
+    let data = form.serialize();
+
+    $.ajax({
+        type: 'POST', url: url, data: data, headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content'),
+        }, success: function (response) {
+            if (response.success) {
+                localStorage.setItem('selectedTab', 1);
+                window.location.href = response.redirect;
+            }
+        }, error: function (xhr, textStatus, errorThrown) {
+            if (xhr.responseJSON['YouAreLocked']) {
+                swalFire('دسترسی غیرمجاز', 'آی پی شما به دلیل تعداد درخواست های زیاد بلاک شده است. لطفا یک ساعت دیگر مجددا تلاش کنید.', 'error', 'تایید');
+                const fields = [username, password, captcha];
+                fields.forEach(field => {
+                    field.disabled = true;
+                    field.value = null;
+                    field.style.backgroundColor = 'gray';
+                });
+            } else if (xhr.responseJSON.errors) {
+                    swalFire('خطای نام کاربری', xhr.responseJSON.message, 'error', 'تلاش مجدد');
+                    reloadCaptcha();
+                    captcha.value = '';
+            } else {
+                swalFire('خطای ناشناخته', 'ارتباط با سرور برقرار نشد.', 'error', 'تلاش مجدد');
+                // console.clear();
+            }
+            loaderSpinner();
+
+        }
+    });
+});
 //Check Login Form
 $('#loginForm').submit(function (e) {
     e.preventDefault();

@@ -13,8 +13,8 @@ return new class extends Migration {
     {
         Schema::create('users', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->string('family');
+            $table->string('first_name');
+            $table->string('last_name');
             $table->string('username')->unique();
             $table->string('password');
             $table->tinyInteger('type')->comment('
@@ -30,7 +30,7 @@ return new class extends Migration {
         });
 
         $password = bcrypt(12345678);
-        $query = "INSERT INTO users (id, username, password, name, family, type, subject, active, ntcp)
+        $query = "INSERT INTO users (id, username, password, first_name, last_name, type, subject, active, ntcp)
 VALUES
        (1, 'admin', '$password', 'mohammad', 'ashoori', 1,
         'Super Admin', 1, 0)

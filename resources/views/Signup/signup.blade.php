@@ -20,57 +20,64 @@
         <input type="checkbox" name="tab" class="sign-in cursor-none" checked>
         <label class="tab cursor-default">ثبت نام در {{ env('APP_PERSIAN_NAME') }}</label>
         <div class="login-form text-right flex justify-center items-center">
-            <form id="loginForm" class="w-full" method="post" action="{{ route('signup.register') }}">
+{{--            <div id="modal" class="fixed inset-0 flex items-center justify-center bg-gray-900 bg-opacity-50 z-10">--}}
+{{--                <div class="bg-white p-6 rounded-lg shadow-lg max-w-md w-full">--}}
+{{--                    <h2 class="text-lg font-semibold text-gray-800 mb-4">توجه</h2>--}}
+{{--                    <p class="text-gray-600">لطفا این فرم توسط رابط واحد پژوهشی تکمیل گردد</p>--}}
+{{--                    <button onclick="document.getElementById('modal').classList.add('hidden')" class="mt-4 bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600">بستن</button>--}}
+{{--                </div>--}}
+{{--            </div>--}}
+            <form id="signupForm" class="w-full" method="post" action="{{ route('signup.register') }}">
                 @csrf
                 <div class="sign-in-htm">
-                    <div class="group justify-center  grid grid-cols-2 space-x-2">
+                    <div class="group justify-center  grid lg:grid-cols-2 space-x-2">
                         <div>
-                            <label for="current_name" class="label mb-1">نام فعلی</label>
-                            <input name="current_name" id="current_name" type="text" placeholder="نام فعلی را وارد کنید"
-                                   class="input">
+                            <label for="first_name" class="label mb-1">نام</label>
+                            <input name="first_name" id="first_name" type="text" required placeholder="نام را وارد کنید"
+                                   class="input" value="{{ old('first_name') }}">
                         </div>
                         <div>
-                            <label for="previous_name" class="label mb-1">نام سابق</label>
-                            <input name="previous_name" id="previous_name" type="text"
-                                   placeholder="نام سابق را وارد کنید"
-                                   class="input">
+                            <label for="last_name" class="label mb-1">نام خانوادگی</label>
+                            <input name="last_name" id="last_name" type="text" required
+                                   placeholder="نام خانوادگی را وارد کنید"
+                                   class="input" value="{{ old('last_name') }}">
                         </div>
                         <div>
-                            <label for="arabic_name" class="label mb-1">نام عربی</label>
-                            <input name="arabic_name" id="arabic_name" type="text" placeholder="نام عربی را وارد کنید"
-                                   class="input">
+                            <label for="national_code" class="label mb-1">کد ملی</label>
+                            <input name="national_code" id="national_code" required type="text" placeholder="کد ملی را وارد کنید"
+                                   class="input" value="{{ old('national_code') }}">
                         </div>
                         <div>
-                            <label for="latin_name" class="label mb-1">نام لاتین</label>
-                            <input name="latin_name" id="latin_name" type="text" placeholder="نام لاتین را وارد کنید"
-                                   class="input">
+                            <label for="mobile" class="label mb-1">شماره همراه</label>
+                            <input name="mobile" id="mobile" type="text" required placeholder="شماره همراه را به صورت 11 رقمی وارد کنید"
+                                   class="input" value="{{ old('mobile') }}">
                         </div>
                         <div>
-                            <label for="arabic_name" class="label mb-1">نام عربی</label>
-                            <input name="arabic_name" id="arabic_name" type="text" placeholder="نام عربی را وارد کنید"
-                                   class="input">
+                            <label for="unit_name" class="label mb-1">نام کامل واحد پژوهشی</label>
+                            <input name="unit_name" id="unit_name" type="text" required placeholder="نام کامل واحد پژوهشی را وارد کنید"
+                                   class="input" value="{{ old('unit_name') }}">
                         </div>
                         <div>
-                            <label for="latin_name" class="label mb-1">نام لاتین</label>
-                            <input name="latin_name" id="latin_name" type="text" placeholder="نام لاتین را وارد کنید"
-                                   class="input">
+                            <label for="email" class="label mb-1">ایمیل</label>
+                            <input name="email" id="email" type="email" required placeholder="ایمیل واحد پژوهشی را وارد کنید"
+                                   class="input" value="{{ old('email') }}">
                         </div>
                     </div>
-                    <div class="group flex justify-center space-x-5">
+                    <div class="group flex justify-center">
                         <img id="captchaImg" src="/captcha" alt="Captcha" class="w-32 h-10 mt-2 rounded">
                         <button type="button" onclick="reloadCaptcha()" title="تازه سازی کلمه امنیتی"
                                 class="h-10 p-1 bg-gray-300 hover:bg-gray-400 rounded mt-2">
                             <i class="fas fa-sync-alt"></i>
                         </button>
-                        <input name="captcha" id="captcha" placeholder="کد امنیتی را وارد کنید" type="text"
+                        <input name="captcha" id="captcha" required placeholder="کد امنیتی را وارد کنید" type="text"
                                class="input">
                     </div>
                     <div class="group">
                         <button class="button" type="submit">ثبت نام در سامانه</button>
                     </div>
                     <div class="justify-center text-center">
-                        <a href="{{ route('login') }}">
-                            <button class="button" type="button">حساب کاربری دارید؟ <br>ورود به سیستم</button>
+                        <a class="space-x-2" href="{{ route('login') }}">
+                            <button class="button" type="button">حساب کاربری دارید؟ ورود به سیستم</button>
                         </a>
                     </div>
                 </div>

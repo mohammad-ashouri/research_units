@@ -101,15 +101,15 @@ class UserManager extends Controller
         if ($validator->fails()) {
             return $this->alerts(false, 'userFounded', 'نام کاربری تکراری وارد شده است.');
         }
-        $name = $request->input('name');
-        $family = $request->input('family');
+        $firstName = $request->input('first_name');
+        $lastName = $request->input('last_name');
         $username = $request->input('username');
         $password = $request->input('password');
         $type = $request->input('type');
 
         $user = new User();
-        $user->name = $name;
-        $user->family = $family;
+        $user->first_name = $firstName;
+        $user->last_name = $lastName;
         $user->username = $username;
         $user->password = bcrypt($password);
         $user->type = $type;
@@ -123,13 +123,13 @@ class UserManager extends Controller
     public function editUser(Request $request): \Illuminate\Http\JsonResponse
     {
         $userID = $request->input('userIdForEdit');
-        $name = $request->input('editedName');
-        $family = $request->input('editedFamily');
+        $firstName = $request->input('editedFirstName');
+        $lastName = $request->input('editedLastName');
         $type = $request->input('editedType');
         $user = User::find($userID);
         if ($user) {
-            $user->name = $name;
-            $user->family = $family;
+            $user->first_name = $firstName;
+            $user->last_name = $lastName;
             $user->type = $type;
             $user->subject = Role::findById($type)->name;
         }
