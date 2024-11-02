@@ -62,7 +62,7 @@
                                    class="input" value="{{ old('unit_name') }}">
                         </div>
                         <div>
-                            <label for="email" class="label mb-1">ایمیل</label>
+                            <label for="email" class="label mb-1">ایمیل واحد پژوهشی</label>
                             <input name="email" id="email" type="email" required placeholder="ایمیل واحد پژوهشی را وارد کنید"
                                    class="input" value="{{ old('email') }}">
                         </div>

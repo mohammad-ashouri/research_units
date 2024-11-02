@@ -22,6 +22,7 @@ class Unit extends Model
      */
     protected $fillable = [
         'name',
+        'email',
         'technical_liaison',
     ];
 
