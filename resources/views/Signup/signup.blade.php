@@ -10,7 +10,7 @@
     <script src="/build/plugins/jquery/dist/jquery.js"></script>
     <script src="/build/plugins/persian-date/dist/persian-date.js"></script>
     <script src="/build/plugins/persian-datepicker/dist/js/persian-datepicker.js"></script>
-    @vite(['resources/css/login.css','resources/css/app.css','resources/js/login.js'])
+    @vite(['resources/css/login.css','resources/js/login.js'])
 </head>
 @component('components.loader-spinner') @endcomponent
 
@@ -56,50 +56,6 @@
                                    class="input">
                         </div>
                     </div>
-                    <div class="group">
-                        <label for="founder_name" class="label mb-1">نام مؤسس (حقیقی/حقوقی)</label>
-                        <input name="founder_name" id="founder_name" type="text" placeholder="نام مؤسس را وارد کنید"
-                               class="input">
-                    </div>
-                    <div class="group">
-                        <label for="founder_name" class="label mb-1">وضعیت مجوز</label>
-                        <select class="input">
-                            <option value="مجوز دارد">مجوز دارد</option>
-                            <option value="مجوز ندارد">مجوز ندارد</option>
-                            <option value="متقاضی مجوز است">متقاضی مجوز است</option>
-                        </select>
-                    </div>
-                    <div class="group">
-                        <div>
-                            <label for="founder_name" class="label mb-1">مرجع صدور مجوز</label>
-                            <select class="input">
-                                <option value="مرکز مدیریت حوزه های علمیه">مرکز مدیریت حوزه های علمیه</option>
-                                <option value="وزارت علوم و تحقیقات و فناوری">وزارت علوم و تحقیقات و فناوری</option>
-                                <option value="سایر">سایر</option>
-                            </select>
-                        </div>
-                        <div class="hidden">
-                            <label for="previous_name" class="label mb-1">نام سابق</label>
-                            <input name="previous_name" id="previous_name" type="text"
-                                   placeholder="نام سابق را وارد کنید"
-                                   class="input">
-                        </div>
-                    </div>
-                    <div class="group justify-center  grid grid-cols-2 space-x-2">
-                        <div>
-                            <label for="founder_name" class="label mb-1">نوع مجوز</label>
-                            <select class="input">
-                                <option value="اصولی">اصولی</option>
-                                <option value="قطعی">قطعی</option>
-                            </select>
-                        </div>
-                        <div>
-                            <label for="license_issuance_date" class="label mb-1">تاریخ صدور/اخذ مجوز</label>
-                            <input name="license_issuance_date" id="license_issuance_date" type="text"
-                                   placeholder="برای انتخاب تاریخ کلیک کنید"
-                                   class="input license_issuance_date">
-                        </div>
-                        </div>
                     <div class="group flex justify-center space-x-5">
                         <img id="captchaImg" src="/captcha" alt="Captcha" class="w-32 h-10 mt-2 rounded">
                         <button type="button" onclick="reloadCaptcha()" title="تازه سازی کلمه امنیتی"
