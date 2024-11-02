@@ -20,13 +20,17 @@
         <input type="checkbox" name="tab" class="sign-in cursor-none" checked>
         <label class="tab cursor-default">ثبت نام در {{ env('APP_PERSIAN_NAME') }}</label>
         <div class="login-form text-right flex justify-center items-center">
-{{--            <div id="modal" class="fixed inset-0 flex items-center justify-center bg-gray-900 bg-opacity-50 z-10">--}}
-{{--                <div class="bg-white p-6 rounded-lg shadow-lg max-w-md w-full">--}}
-{{--                    <h2 class="text-lg font-semibold text-gray-800 mb-4">توجه</h2>--}}
-{{--                    <p class="text-gray-600">لطفا این فرم توسط رابط واحد پژوهشی تکمیل گردد</p>--}}
-{{--                    <button onclick="document.getElementById('modal').classList.add('hidden')" class="mt-4 bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600">بستن</button>--}}
-{{--                </div>--}}
-{{--            </div>--}}
+            <div id="modal" class="fixed inset-0 flex items-center justify-center bg-gray-900 bg-opacity-50 z-10">
+                <div class="bg-white p-6 rounded-lg shadow-lg max-w-md w-full">
+                    <h2 class="text-lg font-semibold text-gray-800 mb-4">توجه</h2>
+                    <p class="text-gray-600">لطفا این فرم توسط رابط فنی واحد پژوهشی تکمیل گردد</p>
+                    <div class="text-center">
+                    <button onclick="document.getElementById('modal').classList.add('hidden')"
+                            class="mt-4 bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600">بستن
+                    </button>
+                    </div>
+                </div>
+            </div>
             <form id="signupForm" class="w-full" method="post" action="{{ route('signup.register') }}">
                 @csrf
                 <div class="sign-in-htm">

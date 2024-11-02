@@ -52,6 +52,7 @@ class PermissionsSeeder extends Seeder
         Permission::create(['name' => 'telescope']);
 
         $superAdminRole = Role::create(['name' => 'ادمین کل']);
+        $technicalLiaisonRole = Role::create(['name' => 'رابط فنی']);
         $superAdminRole->givePermissionTo([
             'telescope',
             'لیست نقش ها',
