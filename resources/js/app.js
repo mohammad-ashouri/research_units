@@ -26,6 +26,10 @@ Alpine.plugin(Intersect)
 Alpine.start()
 window.Alpine = Alpine
 
+
+
+
+
 function openModal(imageUrl) {
     const modal = document.querySelector('.modal-container');
     modal.querySelector('img').src = imageUrl;

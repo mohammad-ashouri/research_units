@@ -176,7 +176,7 @@
 
                                 </div>
                                 <p class="pt-2 text-cu-light">
-                                    {{ $userInfo->username.' | '. $userInfo->name . ' '. $userInfo->family }}
+                                    {{ $userInfo->username.' | '. $userInfo->first_name . ' '. $userInfo->last_name }}
                                 </p>
                                 <p class="pt-1 text-cu-light">
                                     {{ $userInfo->subject }}
@@ -275,8 +275,8 @@
                         // Add the active class to the clicked menu item
                         event.currentTarget.classList.add('active');
 
-                        // Save the selected menu item ID to the localStorage
-                        localStorage.setItem('selectedMenuItem', event.currentTarget.id);
+                        // Save the selected menu item ID to the sessionStorage
+                        sessionStorage.setItem('selectedMenuItem', event.currentTarget.id);
                     }
 
                     // Add event listeners to each menu item
@@ -284,9 +284,9 @@
                         item.addEventListener('click', handleMenuItemClick);
                     });
 
-                    // On page load, check if there's a selected menu item in the localStorage and set it as active
+                    // On page load, check if there's a selected menu item in the sessionStorage and set it as active
                     document.addEventListener('DOMContentLoaded', () => {
-                        const selectedMenuItem = localStorage.getItem('selectedMenuItem');
+                        const selectedMenuItem = sessionStorage.getItem('selectedMenuItem');
                         if (selectedMenuItem) {
                             const menuItem = document.getElementById(selectedMenuItem);
                             if (menuItem) {
@@ -310,8 +310,8 @@
                         // Add the active class to the clicked child menu item
                         event.currentTarget.classList.add('active');
 
-                        // Save the selected child menu item ID to the localStorage
-                        localStorage.setItem('selectedChildMenuItem', event.currentTarget.id);
+                        // Save the selected child menu item ID to the sessionStorage
+                        sessionStorage.setItem('selectedChildMenuItem', event.currentTarget.id);
                     }
 
                     // Add event listeners to each child menu item
@@ -320,9 +320,9 @@
                         item.addEventListener('click', handleChildMenuItemClick);
                     });
 
-                    // On page load, check if there's a selected child menu item in the localStorage and set it as active
+                    // On page load, check if there's a selected child menu item in the sessionStorage and set it as active
                     document.addEventListener('DOMContentLoaded', () => {
-                        const selectedChildMenuItem = localStorage.getItem('selectedChildMenuItem');
+                        const selectedChildMenuItem = sessionStorage.getItem('selectedChildMenuItem');
                         if (selectedChildMenuItem) {
                             const childMenuItem = document.getElementById(selectedChildMenuItem);
                             if (childMenuItem) {
@@ -339,9 +339,9 @@
 
 
                     function handleLogout() {
-                        // Clear the selected menu item and child menu item from localStorage
-                        localStorage.removeItem('selectedMenuItem');
-                        localStorage.removeItem('selectedChildMenuItem');
+                        // Clear the selected menu item and child menu item from sessionStorage
+                        sessionStorage.removeItem('selectedMenuItem');
+                        sessionStorage.removeItem('selectedChildMenuItem');
                     }
 
                     // Add event listener to the "خروج" (Logout) menu item

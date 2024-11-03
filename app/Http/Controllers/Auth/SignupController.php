@@ -45,6 +45,6 @@ class SignupController extends Controller
         $unit->technical_liaison = $user->id;
         $unit->save();
 
-        dd($request->all());
+        return response()->json(['success' => 'You have successfully registered.']);
     }
 }
