@@ -22,13 +22,9 @@ initTE({Modal, Ripple});
 window.Swal = Swal;
 
 //AlpineJS
-Alpine.plugin(Intersect)
-Alpine.start()
-window.Alpine = Alpine
-
-
-
-
+Alpine.plugin(Intersect);
+Alpine.start();
+window.Alpine = Alpine;
 
 function openModal(imageUrl) {
     const modal = document.querySelector('.modal-container');

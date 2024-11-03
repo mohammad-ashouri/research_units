@@ -22,18 +22,107 @@
     <script src="/build/plugins/jquery-tags-input/dist/jquery.tagsinput.min.js"></script>
     <script src="/build/plugins/persian-date/dist/persian-date.js"></script>
     <script src="/build/plugins/persian-datepicker/dist/js/persian-datepicker.js"></script>
+    <link rel="stylesheet" href="/build/plugins/persian-datepicker/dist/css/persian-datepicker.css"/>
     <script>
         $(document).ready(function () {
             $('.select2').select2({
                 placeholder: 'یک گزینه را انتخاب کنید',
             });
-            // tinymce.init({
-            //     selector: '#body',
-            //     plugins: 'table fullscreen autoresize',
-            //     max_height: 1000,
-            //     skin: false,
-            //     content_css: false,
-            // });
+            $(".delivery_date").pDatepicker(
+                {
+                    "format": "LLLL",
+                    "viewMode": "day",
+                    "initialValue": false,
+                    "minDate": null,
+                    "maxDate": null,
+                    "autoClose": false,
+                    "position": "auto",
+                    "altFormat": "lll",
+                    "altField": "#altfieldExample",
+                    "onlyTimePicker": false,
+                    "onlySelectOnDate": true,
+                    "calendarType": "persian",
+                    "inputDelay": 800,
+                    "observer": false,
+                    "calendar": {
+                        "persian": {
+                            "locale": "fa",
+                            "showHint": true,
+                            "leapYearMode": "algorithmic"
+                        },
+                        "gregorian": {
+                            "locale": "en",
+                            "showHint": false
+                        }
+                    },
+                    "navigator": {
+                        "enabled": true,
+                        "scroll": {
+                            "enabled": true
+                        },
+                        "text": {
+                            "btnNextText": "<",
+                            "btnPrevText": ">"
+                        }
+                    },
+                    "toolbox": {
+                        "enabled": true,
+                        "calendarSwitch": {
+                            "enabled": false,
+                            "format": "MMMM"
+                        },
+                        "todayButton": {
+                            "enabled": true,
+                            "text": {
+                                "fa": "امروز",
+                                "en": "Today"
+                            }
+                        },
+                        "submitButton": {
+                            "enabled": false,
+                            "text": {
+                                "fa": "تایید",
+                                "en": "Submit"
+                            }
+                        },
+                        "text": {
+                            "btnToday": "امروز"
+                        }
+                    },
+                    "timePicker": {
+                        "enabled": false,
+                        "step": 1,
+                        "hour": {
+                            "enabled": false,
+                            "step": null
+                        },
+                        "minute": {
+                            "enabled": false,
+                            "step": null
+                        },
+                        "second": {
+                            "enabled": false,
+                            "step": null
+                        },
+                        "meridian": {
+                            "enabled": false
+                        }
+                    },
+                    "dayPicker": {
+                        "enabled": true,
+                        "titleFormat": "YYYY MMMM"
+                    },
+                    "monthPicker": {
+                        "enabled": true,
+                        "titleFormat": "YYYY"
+                    },
+                    "yearPicker": {
+                        "enabled": true,
+                        "titleFormat": "YYYY"
+                    },
+                    "responsive": true
+                }
+            );
         });
     </script>
     <meta name="csrf-token" content="{{ csrf_token() }}">

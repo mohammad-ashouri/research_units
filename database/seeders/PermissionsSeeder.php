@@ -17,6 +17,9 @@ class PermissionsSeeder extends Seeder
     {
         //catalogs
         Permission::create(['name' => 'دسترسی به منوی مقادیر اولیه']);
+        Permission::create(['name' => 'دسترسی به منوی اطلاعات واحد']);
+        Permission::create(['name' => 'دسترسی به منوی کاربرگ اطلاعات واحد']);
+        Permission::create(['name' => 'دسترسی به منوی کاربرگ اطلاعات کلی']);
 
         Permission::create(['name' => 'لیست نقش ها']);
         Permission::create(['name' => 'ایجاد نقش']);
@@ -78,13 +81,20 @@ class PermissionsSeeder extends Seeder
             'دسترسی به منوی دسترسی ها',
             'دسترسی به منوی نقش های کاربری',
             'دسترسی به منوی بکاپ دیتابیس',
+            'دسترسی به منوی اطلاعات واحد',
+        ]);
+        $technicalLiaisonRole->givePermissionTo([
+            'دسترسی به منوی کاربرگ اطلاعات کلی',
+            'دسترسی به منوی کاربرگ اطلاعات واحد',
+            'دسترسی به منوی اطلاعات واحد',
         ]);
 
         $role = Role::where('name', 'ادمین کل')->first();
-        $users = User::get();
-        foreach ($users as $user) {
-            $user = User::find($user->id);
-            $user->assignRole([$role->id]);
-        }
+        $user = User::whereId(1)->first();
+        $user->assignRole([$role->id]);
+
+        $role = Role::where('name', 'رابط فنی')->first();
+        $user = User::whereId(2)->first();
+        $user->assignRole([$role->id]);
     }
 }

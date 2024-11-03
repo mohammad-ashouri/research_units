@@ -32,10 +32,13 @@ return new class extends Migration {
         });
 
         $password = bcrypt(12345678);
+        $technicalLiaisonPassword = bcrypt('09302406816');
         $query = "INSERT INTO users (id, username, password, first_name, last_name, type, subject, active, ntcp)
 VALUES
        (1, 'admin', '$password', 'mohammad', 'ashoori', 1,
-        'Super Admin', 1, 0)
+        'Super Admin', 1, 0),
+       (2, '0371714941', '$technicalLiaisonPassword', 'ali', 'karami', 2,
+        'رابط فنی', 1, 0)
        ;";
 
         DB::statement($query);

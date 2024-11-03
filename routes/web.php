@@ -7,6 +7,7 @@ use App\Http\Controllers\Catalogs\RoleController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\Reports\DatabaseBackupController;
 use App\Http\Controllers\SearchController;
+use App\Http\Controllers\Unit\ResearchUnitInformation;
 use App\Http\Controllers\UserManager;
 use App\Http\Middleware\MenuMiddleware;
 use App\Http\Middleware\NTCPMiddleware;
@@ -67,6 +68,8 @@ Route::middleware(['auth', MenuMiddleware::class])->middleware(MenuMiddleware::c
         Route::resource('/Roles', RoleController::class);
         Route::resource('/Permissions', PermissionController::class);
 
+        //Units
+        Route::resource('/ResearchUnitInformation',ResearchUnitInformation::class);
 
         //Reports
         Route::prefix('BackupDatabase')->group(function () {

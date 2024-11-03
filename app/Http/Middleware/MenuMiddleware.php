@@ -38,6 +38,26 @@ class MenuMiddleware
                         ],
                     ]
                 ],
+                2 => [
+                    'title' => 'اطلاعات واحد',
+                    'link' => '',
+                    'icon' => 'las la-university',
+                    'permission' => "دسترسی به منوی اطلاعات واحد",
+                    'childs' => [
+                        1 => [
+                            'title' => 'کاربرگ اطلاعات کلی',
+                            'link' => '/ResearchUnitInformation',
+                            'permission' => "دسترسی به منوی کاربرگ اطلاعات کلی",
+                            'icon' => 'lab la-wpforms',
+                        ],
+                        2 => [
+                            'title' => 'نقش های کاربری',
+                            'link' => '/Roles',
+                            'permission' => "دسترسی به منوی نقش های کاربری",
+                            'icon' => 'las la-user-tag',
+                        ],
+                    ]
+                ],
                 9 => [
                     'title' => 'مدیریت کاربران',
                     'link' => '/UserManager',
