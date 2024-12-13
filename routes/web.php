@@ -39,8 +39,8 @@ Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login');
 Route::middleware(ThrottleRequests::class)->post('/login', [LoginController::class, 'login']);
 Route::get('/captcha', [LoginController::class, 'getCaptcha'])->name('captcha');
 
-Route::get('/signup',[SignupController::class, 'showSignupForm'])->name('signup');
-Route::post('/signup',[SignupController::class, 'register'])->name('signup.register');
+Route::get('/signup', [SignupController::class, 'showSignupForm'])->name('signup');
+Route::post('/signup', [SignupController::class, 'register'])->name('signup.register');
 
 //Panel Routes
 Route::middleware(['auth', MenuMiddleware::class])->middleware(MenuMiddleware::class)->group(function () {
@@ -69,7 +69,10 @@ Route::middleware(['auth', MenuMiddleware::class])->middleware(MenuMiddleware::c
         Route::resource('/Permissions', PermissionController::class);
 
         //Units
-        Route::resource('/ResearchUnitInformation',ResearchUnitInformation::class);
+        Route::get('/GeneralWorkSheets', [ResearchUnitInformation::class, 'index']);
+        Route::get('/ResearchUnitInformation/{unit}', [ResearchUnitInformation::class, 'show']);
+        Route::post('/ResearchUnitInformation', [ResearchUnitInformation::class, 'store'])->name('ResearchUnitInformation.store');
+        Route::get('/ResearchUnitInformation', [ResearchUnitInformation::class, 'showResearchUnitWorksheet']);
 
         //Reports
         Route::prefix('BackupDatabase')->group(function () {

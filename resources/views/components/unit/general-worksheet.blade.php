@@ -1,4 +1,4 @@
-@props(['units'])
+@props(['unitInfo'])
 <div class="mx-auto lg:mr-72">
     <h1 class="text-2xl font-bold mb-4">کاربرگ اطلاعات کلی واحدهای پژوهشی حوزوی</h1>
     <div class="bg-white rounded shadow p-6">

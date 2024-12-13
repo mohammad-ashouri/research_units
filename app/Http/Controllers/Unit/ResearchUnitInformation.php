@@ -35,12 +35,21 @@ class ResearchUnitInformation extends Controller
      */
     public function index()
     {
-        if (auth()->user()->hasRole('ادمین کل')) {
-            $units = $this->unit->orderByDesc('updated_at')->orderByDesc('name')->get();
-        } elseif (auth()->user()->hasRole('رابط فنی')) {
-            $units = $this->unit->where('technical_liaison', auth()->user()->id)->latest()->first();
+        if (!auth()->user()->hasRole('ادمین کل')) {
+            abort(403);
         }
+        $units = $this->unit->orderByDesc('updated_at')->orderByDesc('name')->get();
+        return view('Units.index', compact('units'));
+    }
 
-        return view('Units.ResearchUnitInformation', compact('units'));
+    public function showResearchUnitWorksheet()
+    {
+        $unitInfo = $this->unit->where('technical_liaison',auth()->user()->id)->orderByDesc('updated_at')->orderByDesc('name')->get();
+        return view('Units.ResearchUnitInformation', compact('unitInfo'));
+    }
+
+    public function store(Request $request)
+    {
+
     }
 }

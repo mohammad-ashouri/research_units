@@ -2,7 +2,7 @@
 
 @section('content')
     <main class="flex-1 bg-cu-light py-6 px-8">
-        <x-unit.general-worksheet :unitInfo="$unitInfo"/>
+
     </main>
 @endsection
 
