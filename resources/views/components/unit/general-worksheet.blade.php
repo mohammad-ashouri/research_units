@@ -5,14 +5,14 @@
         <form action="{{ route('ResearchUnitInformation.store') }}" method="post">
             @csrf
             <div class="bg-white rounded shadow flex flex-col p-4">
-{{--                نام واحد پژوهشی--}}
+                {{--                نام واحد پژوهشی--}}
                 <div>
                     <h1 class="text-xl font-bold mb-4">نام واحد پژوهشی</h1>
                     <div class="grid gap-6 mb-6 md:grid-cols-2">
                         <!-- نام فعلی -->
                         <div>
                             <label for="current_name"
-                                   class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">نام فعلی
+                                   class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">نام فعلی*
                             </label>
                             <input id="current_name" type="text" name="current_name" value="{{ old('current_name') }}"
                                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
@@ -27,7 +27,7 @@
                             <input id="previous_name" type="text" name="previous_name"
                                    value="{{ old('previous_name') }}"
                                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                   placeholder="نام سابق را وارد کنید" required>
+                                   placeholder="نام سابق را وارد کنید">
                         </div>
 
                         <!-- نام عربی -->
@@ -37,7 +37,7 @@
                             </label>
                             <input id="arabic_name" type="text" name="arabic_name" value="{{ old('arabic_name') }}"
                                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                   placeholder="نام عربی را وارد کنید" required>
+                                   placeholder="نام عربی را وارد کنید">
                         </div>
 
                         <!-- نام لاتین -->
@@ -47,19 +47,19 @@
                             </label>
                             <input id="latin_name" type="text" name="latin_name" value="{{ old('latin_name') }}"
                                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                   placeholder="نام لاتین را وارد کنید" required>
+                                   placeholder="نام لاتین را وارد کنید">
                         </div>
                     </div>
                 </div>
                 <hr>
-{{--                اطلاعات مؤسس--}}
+                {{--                اطلاعات مؤسس--}}
                 <div class="mt-2">
                     <h1 class="text-xl font-bold mb-4">اطلاعات مؤسس</h1>
                     <div class="grid gap-6 mb-6 md:grid-cols-1">
                         <!-- نوع مؤسس -->
                         <div>
                             <label for="founder_type"
-                                   class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">نوع مؤسس
+                                   class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">نوع مؤسس*
                             </label>
                             <select id="founder_type" name="founder_type"
                                     class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-3 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
@@ -76,7 +76,7 @@
                         <div>
                             <label for="founder_name"
                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">نام مؤسس (حقیقی/
-                                حقوقی):
+                                حقوقی)*
                             </label>
                             <input id="founder_name" type="text" name="founder_name" value="{{ old('founder_name') }}"
                                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
@@ -85,7 +85,7 @@
                     </div>
                 </div>
                 <hr>
-{{--                اطلاعات مجوز--}}
+                {{--                اطلاعات مجوز--}}
                 <div class="mt-2" x-data="{ hasPermission: false, licensingAuthority: false }">
                     <h1 class="text-xl font-bold mb-4">اطلاعات مجوز</h1>
                     <div class="grid gap-6 mb-6 md:grid-cols-1">
@@ -115,7 +115,7 @@
                                 <select id="license_type" name="license_type"
                                         @change="licensingAuthority = ($event.target.value === 'سایر')"
                                         class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-3 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                        required>
+                                        :required="hasPermission">
                                     <option value="" disabled selected>انتخاب کنید</option>
                                     <option value="اصولی">اصولی</option>
                                     <option value="قطعی">قطعی</option>
@@ -129,8 +129,9 @@
                                 </label>
                                 <input id="license_date" type="text" name="license_date"
                                        value="{{ old('license_date') }}"
+                                       :required="hasPermission"
                                        class="delivery_date bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                       placeholder="تاریخ مجوز را وارد کنید" required>
+                                       placeholder="تاریخ مجوز را وارد کنید">
                             </div>
                         </div>
 
@@ -141,8 +142,9 @@
                             </label>
                             <select id="license_issuer" name="license_issuer"
                                     @change="licensingAuthority = ($event.target.value === 'سایر')"
+                                    :required="hasPermission"
                                     class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-3 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                    required>
+                            >
                                 <option value="" disabled selected>انتخاب کنید</option>
                                 <option value="مرکز مدیریت حوزه های علمیه">مرکز مدیریت حوزه های علمیه</option>
                                 <option value="وزارت علوم و تحقیقات و فناوری">وزارت علوم و تحقیقات و فناوری</option>
@@ -157,8 +159,9 @@
                                 مجوز:
                             </label>
                             <input id="issuer_name" type="text" name="issuer_name" value="{{ old('issuer_name') }}"
+                                   :required="hasPermission"
                                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                   placeholder="نام مرجع صدور مجوز را وارد کنید" required>
+                                   placeholder="نام مرجع صدور مجوز را وارد کنید">
                         </div>
 
                         <!-- وابستگی سازمانی -->
@@ -167,8 +170,9 @@
                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">وابستگی سازمانی:
                             </label>
                             <select id="organizational_affiliation" name="organizational_affiliation"
+                                    :required="hasPermission"
                                     class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-3 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                    required>
+                            >
                                 <option value="" disabled selected>انتخاب کنید</option>
                                 <option value="حوزوی وابسته">حوزوی وابسته</option>
                                 <option value="حوزوی غیر وابسته">حوزوی غیر وابسته</option>
@@ -178,7 +182,7 @@
                     </div>
                 </div>
                 <hr>
-{{--                اطلاعات ثبت--}}
+                {{--                اطلاعات ثبت--}}
                 <div class="mt-2" x-data="{ registrationNumber: false }">
                     <h1 class="text-xl font-bold mb-4">اطلاعات ثبت</h1>
                     <div class="grid gap-6 mb-6 md:grid-cols-1">
@@ -206,15 +210,18 @@
                             <input id="registration_authority" type="text" name="registration_authority"
                                    value="{{ old('registration_authority') }}"
                                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                   placeholder="نام مرجع ثبت کننده را به صورت کامل وارد کنید" required>
+                                   placeholder="نام مرجع ثبت کننده را به صورت کامل وارد کنید"
+                                   :required="registrationNumber"
+                            >
                         </div>
                     </div>
                 </div>
                 <hr>
-{{--                اطلاعات واحد--}}
+                {{--                اطلاعات واحد--}}
                 <div class="mt-2">
                     <h1 class="text-xl font-bold mb-4">اطلاعات واحد</h1>
                     <div class="grid gap-6 mb-6 md:grid-cols-1">
+                        {{--                       سطح / نوع واحد --}}
                         <div x-data="{ unitType: false }">
                             <div>
                                 <label for="unitType"
@@ -225,7 +232,7 @@
                                         id="unitType"
                                         @change="unitType = ($event.target.value === 'سایر')"
                                         class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-3 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                        required>
+                                >
                                     <option value="" disabled selected>انتخاب کنید</option>
                                     <option value="گروه پژوهشی">گروه پژوهشی</option>
                                     <option value="مرکز پژوهشی">مرکز پژوهشی</option>
@@ -239,19 +246,23 @@
                             <div class="mt-2" x-show="unitType" x-transition>
                                 <input type="text" name="unitTypeName" value="{{ old('unitTypeName') }}"
                                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                       placeholder="سطح / نوع واحد را به صورت کامل وارد کنید" required>
+                                       placeholder="سطح / نوع واحد را به صورت کامل وارد کنید"
+                                       :required="unitType"
+                                >
                             </div>
                         </div>
+                        {{--                        موضوع و زمینه فعالیت--}}
                         <div>
                             <label for="activity_field"
                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">موضوع و زمینه
-                                فعالیت:
+                                فعالیت
                             </label>
                             <input type="text" name="activity_field" id="activity_field"
-                                   value="{{ old('activity_field') }}"
+                                   value="{{ old('activity_field') }}" required
                                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                   placeholder="موضوع و زمینه فعالیت را به صورت کامل وارد کنید" required>
+                                   placeholder="موضوع و زمینه فعالیت را به صورت کامل وارد کنید">
                         </div>
+                        {{--                        ماهیت واحد--}}
                         <div x-data="{ unitNature: false }">
                             <div>
                                 <label for="unit_nature"
@@ -278,17 +289,20 @@
                                 <input type="text" name="unit_nature_text" id="unit_nature_text"
                                        value="{{ old('unit_nature_text') }}"
                                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                       placeholder="ماهیت واحد را به صورت کامل وارد کنید" required>
+                                       placeholder="ماهیت واحد را به صورت کامل وارد کنید"
+                                       :required="unitNature"
+                                >
                             </div>
                         </div>
+                        {{--                        نوع تحقیقات--}}
                         <div>
                             <label for="researchTypes"
                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">نوع
-                                تحقیقات:</label>
+                                تحقیقات</label>
                             <div x-data="{
-            researchTypes: @json(old('researchTypes', [])),
-            percentages: @json(old('percentages', []))
-        }" class="grid grid-cols-3 gap-4">
+                                    researchTypes: @json(old('researchTypes', [])),
+                                    percentages: @json(old('percentages', []))
+                                }" class="grid grid-cols-3 gap-4">
 
                                 <!-- چک‌باکس برای تحقیق بنیادی -->
                                 <div class="flex items-center">
@@ -308,6 +322,7 @@
                                         x-show="researchTypes.includes('بنیادی')"
                                         x-model="percentages['بنیادی']"
                                         x-effect="if (!researchTypes.includes('بنیادی')) delete percentages['بنیادی']"
+                                        x-bind:required="researchTypes.includes('بنیادی')"
                                         class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                         min="0" max="100">
                                 </div>
@@ -330,6 +345,7 @@
                                         placeholder="به درصد وارد کنید"
                                         x-show="researchTypes.includes('توسعه ای')"
                                         x-model="percentages['توسعه ای']"
+                                        x-bind:required="researchTypes.includes('توسعه ای')"
                                         x-effect="if (!researchTypes.includes('توسعه ای')) delete percentages['توسعه ای']"
                                         class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                         min="0" max="100">
@@ -352,6 +368,7 @@
                                         placeholder="به درصد وارد کنید"
                                         x-show="researchTypes.includes('کاربردی')"
                                         x-model="percentages['کاربردی']"
+                                        x-bind:required="researchTypes.includes('کاربردی')"
                                         x-effect="if (!researchTypes.includes('کاربردی')) delete percentages['کاربردی']"
                                         class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                         min="0" max="100">
@@ -359,26 +376,26 @@
 
                             </div>
                         </div>
+                        {{--                        معاونت‌های فعال واحد پژوهشی--}}
                         <div>
                             <label for="active_assistants"
                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">معاونت‌های فعال
-                                واحد
-                                پژوهشی:</label>
+                                واحد پژوهشی</label>
                             <div x-data="{
-            activeAssistants: @json(old('activeAssistants', [])),
-            otherActiveAssistants: '{{ old('otherActiveAssistants', '') }}'
-        }" class="grid grid-cols-4 gap-4">
+                                        activeAssistants: @json(old('activeAssistants', [])),
+                                        otherActiveAssistants: '{{ old('otherActiveAssistants', '') }}'
+                                    }" class="grid grid-cols-4 gap-4">
 
                                 <!-- چک‌باکس برای پژوهش -->
                                 <div class="flex items-center">
                                     <input
                                         type="checkbox"
-                                        id="research"
+                                        id="assistant_research"
                                         name="activeAssistants[]"
                                         value="پژوهش"
                                         x-model="activeAssistants"
                                         class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                                    <label for="research"
+                                    <label for="assistant_research"
                                            class="text-sm font-medium text-gray-900 dark:text-white mr-2">
                                         پژوهش
                                     </label>
@@ -388,12 +405,12 @@
                                 <div class="flex items-center">
                                     <input
                                         type="checkbox"
-                                        id="education"
+                                        id="assistant_education"
                                         name="activeAssistants[]"
                                         value="آموزش"
                                         x-model="activeAssistants"
                                         class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                                    <label for="education"
+                                    <label for="assistant_education"
                                            class="text-sm font-medium text-gray-900 dark:text-white mr-2">
                                         آموزش
                                     </label>
@@ -403,12 +420,12 @@
                                 <div class="flex items-center">
                                     <input
                                         type="checkbox"
-                                        id="cultural"
+                                        id="assistant_cultural"
                                         name="activeAssistants[]"
                                         value="فرهنگی"
                                         x-model="activeAssistants"
                                         class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                                    <label for="cultural"
+                                    <label for="assistant_cultural"
                                            class="text-sm font-medium text-gray-900 dark:text-white mr-2">
                                         فرهنگی
                                     </label>
@@ -418,12 +435,13 @@
                                 <div class="flex items-center">
                                     <input
                                         type="checkbox"
-                                        id="finance"
+                                        id="assistant_finance"
                                         name="activeAssistants[]"
                                         value="امور مالی"
                                         x-model="activeAssistants"
                                         class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                                    <label for="finance" class="text-sm font-medium text-gray-900 dark:text-white mr-2">
+                                    <label for="assistant_finance"
+                                           class="text-sm font-medium text-gray-900 dark:text-white mr-2">
                                         امور مالی
                                     </label>
                                 </div>
@@ -432,37 +450,39 @@
                                 <div class="flex items-center">
                                     <input
                                         type="checkbox"
-                                        id="other"
+                                        id="assistant_other"
                                         name="activeAssistants[]"
                                         value="سایر"
                                         x-model="activeAssistants"
                                         @change="if (!activeAssistants.includes('سایر')) otherActiveAssistants = ''"
                                         class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                                    <label for="other" class="text-sm font-medium text-gray-900 dark:text-white mr-2">
+                                    <label for="assistant_other"
+                                           class="text-sm font-medium text-gray-900 dark:text-white mr-2">
                                         سایر
                                     </label>
                                     <input
                                         x-transition
                                         type="text"
                                         name="otherActiveAssistants"
-                                        id="otherActiveAssistants"
+                                        id="assistant_otherActiveAssistants"
                                         placeholder="معاونت‌های فعال واحد پژوهشی را وارد کنید"
+                                        x-bind:required="activeAssistants.includes('سایر')"
                                         x-show="activeAssistants.includes('سایر')"
                                         x-model="otherActiveAssistants"
                                         class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                                 </div>
-
                             </div>
                         </div>
+                        {{--                        وضعیت نشریات در اختیار--}}
                         <div>
                             <label for="publication_status"
                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">وضعیت نشریات در
-                                اختیار:
+                                اختیار
                             </label>
                             <div x-data="{
-                    publicationStatus: @json(old('publicationStatus', [])),
-                    otherPublicationStatus: '{{ old('otherPublicationStatus', '') }}'
-                }" class="grid grid-cols-4 gap-4">
+                                    publicationStatus: @json(old('publicationStatus', [])),
+                                    otherPublicationStatus: '{{ old('otherPublicationStatus', '') }}'
+                                }" class="grid grid-cols-4 gap-4">
                                 <div class="flex items-center">
                                     <input
                                         type="checkbox"
@@ -520,6 +540,7 @@
                                         type="text"
                                         placeholder="وضعیت نشریات در اختیار را وارد کنید"
                                         name="otherPublicationStatus"
+                                        x-bind:required="publicationStatus.includes('سایر')"
                                         x-show="publicationStatus.includes('سایر')"
                                         x-model="otherPublicationStatus"
                                         id="otherPublicationStatusInput"
@@ -527,18 +548,19 @@
                                 </div>
                             </div>
                         </div>
+                        {{--                        نتایج/خروجی فعالیت‌های پژوهشی--}}
                         <div>
                             <label for="researchActivitiesOutput"
                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">نتایج/خروجی
-                                فعالیت‌های پژوهشی:</label>
+                                فعالیت‌های پژوهشی</label>
                             <div x-data="{
-            researchActivitiesOutput: @json(old('researchActivitiesOutput', [])),
-            otherPublicationsAvailable: {
-                'کتاب': '{{ old('otherPublicationsAvailable')['کتاب'] ?? '' }}',
-                'مقالات': '{{ old('otherPublicationsAvailable')['مقالات'] ?? '' }}',
-                'همایش علمی': '{{ old('otherPublicationsAvailable')['همایش علمی'] ?? '' }}'
-            }
-        }" class="grid grid-cols-3 gap-4">
+                                        researchActivitiesOutput: @json(old('researchActivitiesOutput', [])),
+                                        otherPublicationsAvailable: {
+                                            'کتاب': '{{ old('otherPublicationsAvailable')['کتاب'] ?? '' }}',
+                                            'مقالات': '{{ old('otherPublicationsAvailable')['مقالات'] ?? '' }}',
+                                            'همایش علمی': '{{ old('otherPublicationsAvailable')['همایش علمی'] ?? '' }}'
+                                        }
+                                    }" class="grid grid-cols-3 gap-4">
 
                                 <!-- چک‌باکس برای کتاب -->
                                 <div class="flex items-center">
@@ -557,6 +579,7 @@
                                         type="text"
                                         placeholder="تعداد کتاب را وارد کنید"
                                         name="otherPublicationsAvailable[کتاب]"
+                                        x-bind:required="researchActivitiesOutput.includes('کتاب')"
                                         x-show="researchActivitiesOutput.includes('کتاب')"
                                         x-model="otherPublicationsAvailable['کتاب']"
                                         class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
@@ -579,6 +602,7 @@
                                         type="text"
                                         placeholder="تعداد مقالات را وارد کنید"
                                         name="otherPublicationsAvailable[مقالات]"
+                                        x-bind:required="researchActivitiesOutput.includes('مقالات')"
                                         x-show="researchActivitiesOutput.includes('مقالات')"
                                         x-model="otherPublicationsAvailable['مقالات']"
                                         class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
@@ -602,6 +626,7 @@
                                         type="text"
                                         placeholder="تعداد همایش علمی را وارد کنید"
                                         name="otherPublicationsAvailable[همایش علمی]"
+                                        x-bind:required="researchActivitiesOutput.includes('همایش علمی')"
                                         x-show="researchActivitiesOutput.includes('همایش علمی')"
                                         x-model="otherPublicationsAvailable['همایش علمی']"
                                         class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
@@ -609,11 +634,12 @@
 
                             </div>
                         </div>
+                        {{--                        پژوهشکده‌های فعال (نام پژوهشکده‌ها)--}}
                         <div x-data="{ inputs: [''] }" class="space-y-4">
                             <label for="research_institute"
                                    class="block text-sm font-medium text-gray-900 dark:text-white">پژوهشکده‌های فعال
                                 (نام
-                                پژوهشکده‌ها):</label>
+                                پژوهشکده‌ها)</label>
 
                             <div class="flex flex-col space-y-1">
                                 <template x-for="(input, index) in inputs" :key="index">
@@ -637,11 +663,12 @@
                                 </button>
                             </div>
                         </div>
+                        {{--                        گروه‌های پژوهشی فعال (نام گروه‌ها)--}}
                         <div x-data="{ inputs: [''] }" class="space-y-4">
                             <label for="research_group"
                                    class="block text-sm font-medium text-gray-900 dark:text-white">گروه‌های پژوهشی فعال
                                 (نام
-                                گروه‌ها):</label>
+                                گروه‌ها)</label>
 
                             <div class="flex flex-col space-y-1">
                                 <template x-for="(input, index) in inputs" :key="index">
@@ -665,15 +692,16 @@
                                 </button>
                             </div>
                         </div>
+                        {{--                        وضعیت پژوهشگران--}}
                         <div>
                             <label for=""
                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
-                                وضعیت پژوهشگران:
+                                وضعیت پژوهشگران
                             </label>
                             <div x-data="{
-                                researchActivitiesOutput: @json(old('researchActivitiesOutput', [])),
-                                researchActivitiesCount: @json(old('researchActivitiesCount', []))
-                            }" class="grid grid-cols-3 gap-4">
+        researchActivitiesOutput: @json(old('researchActivitiesOutput', [])),
+        researchActivitiesCount: @json(old('researchActivitiesCount', []))
+    }" class="grid grid-cols-3 gap-4">
                                 <div class="flex items-center">
                                     <input
                                         type="checkbox"
@@ -693,6 +721,7 @@
                                         x-show="researchActivitiesOutput.includes('تمام وقت')"
                                         x-model="researchActivitiesCount.fullTime"
                                         id="fullTimeCount"
+                                        x-bind:required="researchActivitiesOutput.includes('تمام وقت')"
                                         class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                                 </div>
 
@@ -715,6 +744,7 @@
                                         x-show="researchActivitiesOutput.includes('پاره وقت')"
                                         x-model="researchActivitiesCount.partTime"
                                         id="partTimeCount"
+                                        x-bind:required="researchActivitiesOutput.includes('پاره وقت')"
                                         class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                                 </div>
 
@@ -736,6 +766,7 @@
                                         x-show="researchActivitiesOutput.includes('ساعتی')"
                                         x-model="researchActivitiesCount.hourly"
                                         id="hourlyCount"
+                                        x-bind:required="researchActivitiesOutput.includes('ساعتی')"
                                         class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                                 </div>
 
@@ -758,6 +789,7 @@
                                         x-show="researchActivitiesOutput.includes('پروژه ای')"
                                         x-model="researchActivitiesCount.projectBased"
                                         id="projectBasedCount"
+                                        x-bind:required="researchActivitiesOutput.includes('پروژه ای')"
                                         class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                                 </div>
 
@@ -779,6 +811,7 @@
                                         x-show="researchActivitiesOutput.includes('سایر')"
                                         x-model="researchActivitiesCount.other"
                                         id="otherCount"
+                                        x-bind:required="researchActivitiesOutput.includes('سایر')"
                                         class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                                 </div>
 
@@ -801,14 +834,16 @@
                                         x-show="researchActivitiesOutput.includes('کادر/پرسنل (غیرپژوهشگر)')"
                                         x-model="researchActivitiesCount.nonResearcherStaff"
                                         id="nonResearcherStaffCount"
+                                        x-bind:required="researchActivitiesOutput.includes('کادر/پرسنل (غیرپژوهشگر)')"
                                         class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                                 </div>
                             </div>
                         </div>
+                        {{--                        منابع مالی واحد--}}
                         <div>
                             <label for="financial_resources"
                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
-                                منابع مالی واحد:
+                                منابع مالی واحد
                             </label>
                             <div x-data="{
                                 financialResources: @json(old('financialResources', [])),
@@ -894,6 +929,7 @@
                                         type="text"
                                         placeholder="سایر منابع مالی واحد را وارد کنید"
                                         name="otherFinancialResource"
+                                        x-bind:required="financialResources.includes('سایر')"
                                         x-show="financialResources.includes('سایر')"
                                         x-model="otherFinancialResource"
                                         id="otherFinancialResource"
@@ -901,10 +937,11 @@
                                 </div>
                             </div>
                         </div>
+                        {{--                        ساختار و تشکیلات--}}
                         <div>
                             <label for="structure_and_organization"
                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
-                                ساختار و تشکیلات:
+                                ساختار و تشکیلات
                             </label>
                             <div x-data="{
                                 financialResources: @json(old('financialResources', []))
@@ -970,6 +1007,7 @@
                                 </div>
                             </div>
                         </div>
+                        {{--                        وضعیت ملکی محل استقرار واحد پژوهشی--}}
                         <div>
                             <label for="building_status"
                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
@@ -1074,6 +1112,7 @@
                                         type="text"
                                         placeholder="وضعیت ملکی دیگر را وارد کنید"
                                         name="otherBuildingStatus"
+                                        x-bind:required="buildingStatus.includes('سایر')"
                                         x-show="buildingStatus.includes('سایر')"
                                         x-model="otherBuildingStatus"
                                         id="other_building_status_input"
@@ -1082,10 +1121,11 @@
 
                             </div>
                         </div>
+                        {{--                        وضعیت کتابخانه--}}
                         <div>
                             <label for="library_status"
                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
-                                وضعیت کتابخانه:
+                                وضعیت کتابخانه
                             </label>
                             <div x-data="{
             libraryStatus: @json(old('libraryStatus', []))
@@ -1138,10 +1178,11 @@
 
                             </div>
                         </div>
+                        {{--                        امکانات ساختمانی--}}
                         <div>
                             <label for="building_facilities"
                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
-                                امکانات ساختمانی:
+                                امکانات ساختمانی
                             </label>
                             <div x-data="{
             buildingFacilities: @json(old('buildingFacilities', [])),
@@ -1227,6 +1268,7 @@
                                         type="text"
                                         placeholder="امکانات ساختمانی دیگر را وارد کنید"
                                         name="otherBuildingFacilities"
+                                        x-bind:required="buildingFacilities.includes('سایر')"
                                         x-show="buildingFacilities.includes('سایر')"
                                         x-model="otherBuildingFacilities"
                                         id="other_building_facility_input"
@@ -1238,7 +1280,7 @@
                     </div>
                 </div>
                 <hr>
-{{--                اطلاعات شعبه--}}
+                {{--                اطلاعات شعبه--}}
                 <div class="mt-2" x-data="{ hasPermission: false, licensingAuthority: false }">
                     <h1 class="text-xl font-bold mb-4">اطلاعات شعبه</h1>
                     <div class="grid gap-6 mb-6 md:grid-cols-1">
@@ -1265,7 +1307,8 @@
                             </label>
                             <input id="country_name" type="text" name="country_name" value="{{ old('country_name') }}"
                                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                   placeholder="نام کشور را وارد کنید" required>
+                                   x-bind:required="licensingAuthority"
+                                   placeholder="نام کشور را وارد کنید">
                         </div>
 
                         <!-- نام استان محل استقرار شعبه -->
@@ -1277,6 +1320,7 @@
                             <input id="province_name" type="text" name="province_name"
                                    value="{{ old('province_name') }}"
                                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                   x-bind:required="licensingAuthority"
                                    placeholder="نام استان را وارد کنید" required>
                         </div>
 
@@ -1288,13 +1332,14 @@
                             <input id="branch_address" type="text" name="branch_address"
                                    value="{{ old('branch_address') }}"
                                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                   x-bind:required="licensingAuthority"
                                    placeholder="نشانی شعبه را وارد کنید" required>
                         </div>
 
                     </div>
                 </div>
                 <hr>
-{{--                راه های ارتباطی--}}
+                {{--                راه های ارتباطی--}}
                 <div class="mt-2">
                     <h1 class="text-xl font-bold mb-4">راه های ارتباطی</h1>
                     <div class="grid gap-6 mb-6 md:grid-cols-2">
@@ -1305,7 +1350,7 @@
                             </label>
                             <input id="postal_box" type="text" name="postal_box" value="{{ old('postal_box') }}"
                                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                   placeholder="صندوق پستی را وارد کنید" required>
+                                   placeholder="صندوق پستی را وارد کنید">
                         </div>
 
                         <!-- ایمیل -->
@@ -1315,7 +1360,7 @@
                             </label>
                             <input id="email" type="email" name="email" value="{{ old('email') }}"
                                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                   placeholder="ایمیل را وارد کنید" required>
+                                   placeholder="ایمیل را وارد کنید">
                         </div>
 
                         <!-- دورنگار -->
@@ -1325,7 +1370,7 @@
                             </label>
                             <input id="fax" type="text" name="fax" value="{{ old('fax') }}"
                                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                   placeholder="دورنگار را وارد کنید" required>
+                                   placeholder="دورنگار را وارد کنید">
                         </div>
 
                         <!-- پایگاه اینترنتی -->
@@ -1335,7 +1380,7 @@
                             </label>
                             <input id="website" type="url" name="website" value="{{ old('website') }}"
                                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                   placeholder="پایگاه اینترنتی را وارد کنید" required>
+                                   placeholder="پایگاه اینترنتی را وارد کنید">
                         </div>
 
                         <!-- کدپستی -->
@@ -1345,7 +1390,7 @@
                             </label>
                             <input id="postal_code" type="text" name="postal_code" value="{{ old('postal_code') }}"
                                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                   placeholder="کدپستی را وارد کنید" required>
+                                   placeholder="کدپستی را وارد کنید">
                         </div>
 
                         <!-- تلفن ثابت/همراه -->
@@ -1355,7 +1400,7 @@
                             </label>
                             <input id="phone" type="text" name="phone" value="{{ old('phone') }}"
                                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                   placeholder="تلفن ثابت/همراه را وارد کنید" required>
+                                   placeholder="تلفن ثابت/همراه را وارد کنید">
                         </div>
 
                         <!-- نشانی واحد/مرکزی -->
@@ -1365,12 +1410,12 @@
                             </label>
                             <input id="address" type="text" name="address" value="{{ old('address') }}"
                                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                   placeholder=" نشانی واحد/مرکزی را وارد کنید" required>
+                                   placeholder=" نشانی واحد/مرکزی را وارد کنید">
                         </div>
                     </div>
                 </div>
                 <hr>
-{{--                فضای مجازی در اختیار--}}
+                {{--                فضای مجازی در اختیار--}}
                 <div class="mt-2">
                     <h1 class="text-xl font-bold mb-4">فضای مجازی در اختیار</h1>
                     <div x-data="{
@@ -1408,10 +1453,12 @@
                     </div>
                 </div>
             </div>
-            <button type="submit"
-                    class="px-4 py-2 mr-3 bg-blue-500 text-white rounded-md hover:bg-blue-600 focus:outline-none focus:ring focus:border-blue-300 GetPersonEquipmentsReport">
-                ارسال کاربرگ
-            </button>
+            <div class="text-left mt-3">
+                <button type="submit"
+                        class="px-4 py-2 mr-3 bg-blue-500 text-white rounded-md hover:bg-blue-600 focus:outline-none focus:ring focus:border-blue-300 GetPersonEquipmentsReport">
+                    ارسال کاربرگ
+                </button>
+            </div>
         </form>
     </div>
 </div>
