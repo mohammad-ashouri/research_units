@@ -86,7 +86,18 @@
                 </div>
                 <hr>
                 {{--                اطلاعات مجوز--}}
-                <div class="mt-2" x-data="{ hasPermission: false, licensingAuthority: false }">
+                <div class="mt-2" x-data="{
+                            hasPermission: false,
+                            licensingAuthority: false,
+                            resetFields() {
+                                this.licensingAuthority = false;
+                                document.getElementById('license_type').value = '';
+                                document.getElementById('license_date').value = '';
+                                document.getElementById('license_issuer').value = '';
+                                document.getElementById('issuer_name').value = '';
+                                document.getElementById('organizational_affiliation').value = '';
+                            }
+                        }">
                     <h1 class="text-xl font-bold mb-4">اطلاعات مجوز</h1>
                     <div class="grid gap-6 mb-6 md:grid-cols-1">
                         <!-- وضعیت مجوز -->
@@ -95,7 +106,7 @@
                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">وضعیت مجوز
                             </label>
                             <select id="license_status" name="license_status"
-                                    @change="hasPermission = ($event.target.value === 'مجوز دارد' || $event.target.value === 'متقاضی مجوز است')"
+                                    @change="hasPermission = ($event.target.value === 'مجوز دارد' || $event.target.value === 'متقاضی مجوز است'); if (!hasPermission) resetFields();"
                                     class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-3 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                     required>
                                 <option value="" disabled selected>انتخاب کنید</option>
@@ -143,8 +154,7 @@
                             <select id="license_issuer" name="license_issuer"
                                     @change="licensingAuthority = ($event.target.value === 'سایر')"
                                     :required="hasPermission"
-                                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-3 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                            >
+                                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-3 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                                 <option value="" disabled selected>انتخاب کنید</option>
                                 <option value="مرکز مدیریت حوزه های علمیه">مرکز مدیریت حوزه های علمیه</option>
                                 <option value="وزارت علوم و تحقیقات و فناوری">وزارت علوم و تحقیقات و فناوری</option>
@@ -159,7 +169,7 @@
                                 مجوز:
                             </label>
                             <input id="issuer_name" type="text" name="issuer_name" value="{{ old('issuer_name') }}"
-                                   :required="hasPermission"
+                                   :required="licensingAuthority"
                                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                    placeholder="نام مرجع صدور مجوز را وارد کنید">
                         </div>
@@ -171,8 +181,7 @@
                             </label>
                             <select id="organizational_affiliation" name="organizational_affiliation"
                                     :required="hasPermission"
-                                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-3 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                            >
+                                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-3 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                                 <option value="" disabled selected>انتخاب کنید</option>
                                 <option value="حوزوی وابسته">حوزوی وابسته</option>
                                 <option value="حوزوی غیر وابسته">حوزوی غیر وابسته</option>
@@ -183,7 +192,12 @@
                 </div>
                 <hr>
                 {{--                اطلاعات ثبت--}}
-                <div class="mt-2" x-data="{ registrationNumber: false }">
+                <div class="mt-2" x-data="{
+                                registrationNumber: false,
+                                resetFields() {
+                                    document.getElementById('registration_authority').value = '';
+                                }
+                            }">
                     <h1 class="text-xl font-bold mb-4">اطلاعات ثبت</h1>
                     <div class="grid gap-6 mb-6 md:grid-cols-1">
                         <!-- وضعیت شماره ثبت -->
@@ -192,7 +206,7 @@
                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">وضعیت شماره ثبت
                             </label>
                             <select id="registration_status" name="registration_status"
-                                    @change="registrationNumber = ($event.target.value === 'دارد')"
+                                    @change="registrationNumber = ($event.target.value === 'دارد'); if (!registrationNumber) resetFields();"
                                     class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-3 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                     required>
                                 <option value="" disabled selected>انتخاب کنید</option>
@@ -301,7 +315,7 @@
                                 تحقیقات</label>
                             <div x-data="{
                                     researchTypes: @json(old('researchTypes', [])),
-                                    percentages: @json(old('percentages', []))
+                                    researchTypePercentages: @json(old('researchTypePercentages', []))
                                 }" class="grid grid-cols-3 gap-4">
 
                                 <!-- چک‌باکس برای تحقیق بنیادی -->
@@ -317,11 +331,11 @@
                                     <input
                                         x-transition
                                         type="number"
-                                        name="percentages[بنیادی]"
+                                        name="researchTypePercentages[بنیادی]"
                                         placeholder="به درصد وارد کنید"
                                         x-show="researchTypes.includes('بنیادی')"
-                                        x-model="percentages['بنیادی']"
-                                        x-effect="if (!researchTypes.includes('بنیادی')) delete percentages['بنیادی']"
+                                        x-model="researchTypePercentages['بنیادی']"
+                                        x-effect="if (!researchTypes.includes('بنیادی')) delete researchTypePercentages['بنیادی']"
                                         x-bind:required="researchTypes.includes('بنیادی')"
                                         class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                         min="0" max="100">
@@ -341,12 +355,12 @@
                                     <input
                                         x-transition
                                         type="number"
-                                        name="percentages[توسعه ای]"
+                                        name="researchTypePercentages[توسعه ای]"
                                         placeholder="به درصد وارد کنید"
                                         x-show="researchTypes.includes('توسعه ای')"
-                                        x-model="percentages['توسعه ای']"
+                                        x-model="researchTypePercentages['توسعه ای']"
                                         x-bind:required="researchTypes.includes('توسعه ای')"
-                                        x-effect="if (!researchTypes.includes('توسعه ای')) delete percentages['توسعه ای']"
+                                        x-effect="if (!researchTypes.includes('توسعه ای')) delete researchTypePercentages['توسعه ای']"
                                         class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                         min="0" max="100">
                                 </div>
@@ -364,12 +378,12 @@
                                     <input
                                         x-transition
                                         type="number"
-                                        name="percentages[کاربردی]"
+                                        name="researchTypePercentages[کاربردی]"
                                         placeholder="به درصد وارد کنید"
                                         x-show="researchTypes.includes('کاربردی')"
-                                        x-model="percentages['کاربردی']"
+                                        x-model="researchTypePercentages['کاربردی']"
                                         x-bind:required="researchTypes.includes('کاربردی')"
-                                        x-effect="if (!researchTypes.includes('کاربردی')) delete percentages['کاربردی']"
+                                        x-effect="if (!researchTypes.includes('کاربردی')) delete researchTypePercentages['کاربردی']"
                                         class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                         min="0" max="100">
                                 </div>
@@ -1420,17 +1434,17 @@
                     <h1 class="text-xl font-bold mb-4">فضای مجازی در اختیار</h1>
                     <div x-data="{
                     socialMediaOptions: ['ایتا', 'سروش', 'آی گپ', 'بله'],
-                    selectedOptions: @json(old('selectedOptions', [])),
-                    ids: @json(old('ids', []))
+                    selectedSocialMediaOptions: @json(old('selectedSocialMediaOptions', [])),
+                    socialMediaIds: @json(old('socialMediaIds', []))
                 }" class="grid grid-cols-3 gap-4">
                         <template x-for="option in socialMediaOptions" :key="option">
                             <div class="flex items-center">
                                 <!-- Checkbox -->
                                 <input
                                     type="checkbox"
-                                    :name="`selectedOptions[]`"
+                                    :name="`selectedSocialMediaOptions[]`"
                                     :value="option"
-                                    x-model="selectedOptions"
+                                    x-model="selectedSocialMediaOptions"
                                     :id="`checkbox_${option}`"
                                     class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                                 <label :for="`checkbox_${option}`"
@@ -1442,11 +1456,11 @@
                                     x-transition
                                     type="text"
                                     placeholder="آیدی را وارد کنید"
-                                    :name="`ids[${option}]`"
-                                    x-show="selectedOptions.includes(option)"
-                                    x-model="ids[option]"
+                                    :name="`socialMediaIds[${option}]`"
+                                    x-show="selectedSocialMediaOptions.includes(option)"
+                                    x-model="socialMediaIds[option]"
                                     :id="`id_${option}`"
-                                    :required="selectedOptions.includes(option)"
+                                    :required="selectedSocialMediaOptions.includes(option)"
                                     class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                             </div>
                         </template>
@@ -1462,4 +1476,3 @@
         </form>
     </div>
 </div>
-
